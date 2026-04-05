@@ -1,5 +1,5 @@
 import { Role } from "@prisma/client";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 export interface JWTPayload {
   userId: string;
@@ -15,4 +15,20 @@ export const signToken = (
     expiresIn: jwtExpiresIn as any,
   });
   return signedToken;
+};
+
+export const verifyToken = (
+  accessToken: string,
+  secretKey: string,
+): JWTPayload => {
+  const decoded = jwt.verify(accessToken, secretKey);
+  if (
+    typeof decoded === "object" &&
+    decoded !== null &&
+    "userId" in decoded &&
+    "role" in decoded
+  ) {
+    return decoded as JWTPayload;
+  }
+  throw new Error("Invalid token payload structure");
 };
