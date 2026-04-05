@@ -4,6 +4,8 @@ import prisma from "./config/db";
 import { errorMiddleware } from "./middlewares/error.middlewares";
 import logger from "./utils/logger";
 import { authRouter } from "./modules/auth/auth.routes";
+import { authorizeRole } from "./middlewares/rbac.middleware";
+import { authMiddleware } from "./middlewares/auth.middleware";
 
 dotenv.config();
 
