@@ -30,7 +30,7 @@
     "dev": "tsx watch -r tsconfig-paths/register src/server.ts",
     "build": "tsc",
     "prebuild": "eslint . --ext .ts",
-    "start": "node dist/server.ts",
+    "start": "node dist/server.js",
     "seed": "npx prisma db seed",
     "migrate": "npx prisma migrate dev",
     "lint": "eslint . --ext .ts",
