@@ -4,10 +4,9 @@ import prisma from "./config/db";
 import { errorMiddleware } from "./middlewares/error.middlewares";
 import logger from "./utils/logger";
 import { authRouter } from "./modules/auth/auth.routes";
-import { authorizeRole } from "./middlewares/rbac.middleware";
-import { authMiddleware } from "./middlewares/auth.middleware";
 import { usersRouter } from "./modules/users/users.routes";
 import { transactionsRouter } from "./modules/transactions/transactions.router";
+import { analyticsRouter } from "./modules/analytics/analytics.router";
 
 dotenv.config();
 
@@ -28,6 +27,7 @@ prisma
 app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 app.use("/transactions", transactionsRouter);
+app.use("/dashboard", analyticsRouter);
 
 app.use(errorMiddleware);
 
