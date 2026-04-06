@@ -6,6 +6,7 @@ import logger from "./utils/logger";
 import { authRouter } from "./modules/auth/auth.routes";
 import { authorizeRole } from "./middlewares/rbac.middleware";
 import { authMiddleware } from "./middlewares/auth.middleware";
+import { usersRouter } from "./modules/users/users.routes";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ prisma
   .catch((e) => logger.error("Database connection failed", e));
 
 app.use("/auth", authRouter);
+app.use("/users", usersRouter);
 
 app.use(errorMiddleware);
 
