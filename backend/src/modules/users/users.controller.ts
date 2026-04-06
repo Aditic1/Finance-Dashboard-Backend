@@ -6,6 +6,7 @@ import { Role } from "@prisma/client";
 import { CreateUserData, UpdateUserData } from "./users.types";
 import { UserDTO } from "./users.dto";
 import { getUserDTO } from "./utils/userDTO";
+import { UserController } from "./users.interface";
 
 const registerSchema = z.object({
   email: z.email(),
@@ -94,7 +95,7 @@ const deleteUser = async (req: Request, res: Response): Promise<void> => {
   res.status(200).json({ success: true, data: userDTO });
 };
 
-export const usersController = {
+export const usersController: UserController = {
   getAllUsers,
   getUserById,
   createUser,
