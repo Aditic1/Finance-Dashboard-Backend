@@ -36,8 +36,8 @@ async function main() {
 
   console.log("Admin user seeded");
 
-  const transactions = Array.from({ length: 100000 }, () => ({
-    amount: parseFloat(faker.finance.amount({ min: 10, max: 100000 })),
+  const transactions = Array.from({ length: 50000 }, () => ({
+    amount: parseFloat(faker.finance.amount({ min: 10, max: 50000 })),
     type: faker.helpers.arrayElement([
       TransactionType.INCOME,
       TransactionType.EXPENSE,
