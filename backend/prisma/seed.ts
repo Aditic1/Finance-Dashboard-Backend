@@ -54,7 +54,15 @@ async function main() {
     ),
   }));
 
-  await prisma.transaction.createMany({ data: transactions });
+  const BATCH_SIZE = 5000;
+  for (let i = 0; i < transactions.length; i += BATCH_SIZE) {
+    const batch = transactions.slice(i, i + BATCH_SIZE);
+    await prisma.transaction.createMany({ data: batch });
+    console.log(
+      `Seeded batch ${Math.floor(i / BATCH_SIZE) + 1} of ${Math.ceil(transactions.length / BATCH_SIZE)}`,
+    );
+  }
+
   console.log("100K transactions seeded");
 }
 
